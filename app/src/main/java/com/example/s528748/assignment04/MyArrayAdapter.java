@@ -35,14 +35,23 @@ public class MyArrayAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+        int arr[] = new int[20];
+        int j = -10;
+        for(int i = 0; i < 20; i++){
+            arr[i] = j ;
+            j++;
+        }
         View v = super.getView(position, convertView, parent);
         TextView tv1 = (TextView) v.findViewById(R.id.textView1);
         TextView tv2 = (TextView) v.findViewById(R.id.textView2);
+        TextView tv3 = (TextView) v.findViewById(R.id.textView3);
         Event e = (Event) getItem(position);
 
         tv1.setText(e.getName());
         tv2.setText(e.getCount() + "");
+        //e.setRating();
+        tv3.setText(e.getRating() + "");
+
         return v;
 
 

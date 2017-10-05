@@ -19,23 +19,26 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Event> events = new ArrayList<>();
     ArrayAdapter server;
+    Event lastClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ListView listView = (ListView) findViewById(R.id.Listview);
 
         server = new MyArrayAdapter(this, R.layout.event_item, R.id.textView1, events);
-        
+
         listView.setAdapter(server);
+       // listView.addView();
 
         listView.setOnItemClickListener(new ListView.OnItemClickListener( ){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Event e = events.get(position);
                 e.incrementCountByOne();
+                lastClicked = e;
                 TextView textView = (TextView) findViewById(R.id.textView2);
                 textView.setText(e.getCount() + "");
                 // redraws only updated ones
@@ -45,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
             //   data.add(new Pet("xx", "mutt", 50.0));
-
-
         });
 
 
@@ -55,9 +56,11 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v){
         EditText editText = (EditText) findViewById(R.id.edittext);
         String newEventName = editText.getText().toString();
+
         if(!newEventName.equals("")){
             Event e = new Event(newEventName);
             events.add(e);
+            e.setRating();
             Toast.makeText(getApplicationContext(),
                     newEventName + " event created",
                     Toast.LENGTH_SHORT).show();
@@ -88,6 +91,18 @@ public class MainActivity extends AppCompatActivity {
         return comp;
     }
 
+    public static Comparator<Event> getCompByRating()
+    {
+        Comparator comp = new Comparator<Event>(){
+            @Override
+            public int compare(Event e1, Event e2)
+            {
+                return Integer.compare(e1.getRating(), e2.getRating());
+            }
+        };
+        return comp;
+    }
+
     public static Comparator<Event> getCompByCount()
     {
         Comparator comp = new Comparator<Event>(){
@@ -101,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void sortByName(View view) {
         Collections.sort(events, getCompByName() );
         server.notifyDataSetChanged();
@@ -110,5 +126,21 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(events, getCompByCount() );
         server.notifyDataSetChanged();
 
+    }
+
+    public void deleteLastClickedItem(View view) {
+        if(lastClicked != null   )
+        events.remove(lastClicked);
+        server.notifyDataSetChanged();
+    }
+
+    public void sortByRating(View view) {
+        Collections.sort(events, getCompByRating() );
+        server.notifyDataSetChanged();
+    }
+
+    public void deleteAll(View view) {
+        events.clear();
+        server.notifyDataSetChanged();
     }
 }

@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context="com.example.s528748.assignment04.MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:text="Events Are Us" />
+
     <ListView
         android:id="@+id/Listview"
         android:layout_width="match_parent"
@@ -29,30 +41,91 @@
         android:hint="Event Name"
         tools:layout_editor_absoluteY="353dp"
          />
-
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="center">
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Event"
+        android:text="Add event"
         android:onClick="onClick"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:backgroundTint="#4CAF50"
          />
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort by name"
-            android:onClick="sortByName"
+            android:layout_weight="1"
+            android:text="Delete last clicked"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:onClick="deleteLastClickedItem"
+            android:backgroundTint="#B71C1C"/>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete all"
+            android:backgroundTint="#B71C1C"
+            android:textAllCaps="false"
+            android:onClick="deleteAll"
+            android:textColor="#FFFFFF"
             />
 
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center">
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort by count"
+            android:text="Sort by Count"
             android:onClick="sortByCount"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@android:color/holo_blue_light"
             />
 
-     </LinearLayout>
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by Name"
+            android:textAllCaps="false"
+            android:onClick="sortByName"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@android:color/holo_blue_light"
+            />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by Rating"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:onClick="sortByRating"
+            android:backgroundTint="@android:color/holo_blue_light"
+            />
+
+        </LinearLayout>
+
 </LinearLayout>
 
